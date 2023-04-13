@@ -1,26 +1,38 @@
--- Create the necessary tables and relationships for your database schema
+-- Create schema for the app
+CREATE SCHEMA IF NOT EXISTS app;
 
--- User Table
+-- Set the search path
+SET search_path TO app;
+
+-- Create users table
 CREATE TABLE IF NOT EXISTS users (
-  ...
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
--- Oracle Table
+-- Create oracles table
 CREATE TABLE IF NOT EXISTS oracles (
-  ...
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  job_id VARCHAR(255) NOT NULL,
+  payment NUMERIC(18, 0) NOT NULL
 );
 
--- Request Table
+-- Create requests table
 CREATE TABLE IF NOT EXISTS requests (
-  ...
+  id SERIAL PRIMARY KEY,
+  oracle_id INTEGER REFERENCES oracles(id) ON DELETE CASCADE,
+  job_id VARCHAR(255) NOT NULL,
+  url VARCHAR(1024) NOT NULL,
+  path VARCHAR(1024) NOT NULL,
+  times INTEGER NOT NULL
 );
 
--- Response Table
+-- Create responses table
 CREATE TABLE IF NOT EXISTS responses (
-  ...
-);
-
--- Transaction Table
-CREATE TABLE IF NOT EXISTS transactions (
-  ...
+  id SERIAL PRIMARY KEY,
+  request_id INTEGER REFERENCES requests(id) ON DELETE CASCADE,
+  oracle_id INTEGER REFERENCES oracles(id) ON DELETE CASCADE,
+  result VARCHAR(255) NOT NULL
 );
