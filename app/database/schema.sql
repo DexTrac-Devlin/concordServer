@@ -1,38 +1,40 @@
--- Create schema for the app
-CREATE SCHEMA IF NOT EXISTS app;
-
--- Set the search path
-SET search_path TO app;
-
--- Create users table
-CREATE TABLE IF NOT EXISTS users (
-  id SERIAL PRIMARY KEY,
-  username VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL
+CREATE TABLE blocks (
+    block_number INTEGER PRIMARY KEY,
+    hash CHAR(66) NOT NULL,
+    parent_hash CHAR(66) NOT NULL,
+    nonce CHAR(18) NOT NULL,
+    sha3_uncles CHAR(66) NOT NULL,
+    logs_bloom CHAR(514) NOT NULL,
+    transactions_root CHAR(66) NOT NULL,
+    state_root CHAR(66) NOT NULL,
+    receipts_root CHAR(66) NOT NULL,
+    miner CHAR(42) NOT NULL,
+    difficulty VARCHAR(32) NOT NULL,
+    total_difficulty VARCHAR(32) NOT NULL,
+    extra_data CHAR(2) NOT NULL,
+    size INTEGER NOT NULL,
+    gas_limit INTEGER NOT NULL,
+    gas_used INTEGER NOT NULL,
+    timestamp INTEGER NOT NULL,
+    transaction_count INTEGER NOT NULL
 );
 
--- Create oracles table
-CREATE TABLE IF NOT EXISTS oracles (
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  job_id VARCHAR(255) NOT NULL,
-  payment NUMERIC(18, 0) NOT NULL
+CREATE TABLE accounts (
+    address CHAR(42) PRIMARY KEY,
+    balance VARCHAR(32) NOT NULL
 );
 
--- Create requests table
-CREATE TABLE IF NOT EXISTS requests (
-  id SERIAL PRIMARY KEY,
-  oracle_id INTEGER REFERENCES oracles(id) ON DELETE CASCADE,
-  job_id VARCHAR(255) NOT NULL,
-  url VARCHAR(1024) NOT NULL,
-  path VARCHAR(1024) NOT NULL,
-  times INTEGER NOT NULL
+CREATE TABLE logs (
+    id SERIAL PRIMARY KEY,
+    log_index INTEGER NOT NULL,
+    transaction_hash CHAR(66) NOT NULL,
+    transaction_index INTEGER NOT NULL,
+    block_hash CHAR(66) NOT NULL,
+    block_number INTEGER NOT NULL,
+    address CHAR(42) NOT NULL,
+    data TEXT NOT NULL,
+    topics TEXT[] NOT NULL
 );
 
--- Create responses table
-CREATE TABLE IF NOT EXISTS responses (
-  id SERIAL PRIMARY KEY,
-  request_id INTEGER REFERENCES requests(id) ON DELETE CASCADE,
-  oracle_id INTEGER REFERENCES oracles(id) ON DELETE CASCADE,
-  result VARCHAR(255) NOT NULL
-);
+CREATE INDEX idx_logs_block_number ON logs (block_number);
+CREATE INDEX idx_logs_address ON logs (address);

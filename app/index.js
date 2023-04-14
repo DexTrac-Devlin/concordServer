@@ -6,6 +6,9 @@ const users = require('./api/users');
 const oracles = require('./api/oracles');
 const requests = require('./api/requests');
 const responses = require('./api/responses');
+const getBalance = require('./api/getBalance');
+const getBlockByNumber = require('./api/getBlockByNumber');
+const getLogs = require('./api/getLogs');
 const websocket = require('./websocket/websocket');
 
 dotenv.config();
@@ -25,6 +28,9 @@ app.use('/api/users', users(pool));
 app.use('/api/oracles', oracles(pool));
 app.use('/api/requests', requests(pool, wss));
 app.use('/api/responses', responses(pool, wss));
+app.use('/api/balance', getBalance(pool));
+app.use('/api/block', getBlockByNumber(pool));
+app.use('/api/logs', getLogs(pool));
 
 const port = process.env.PORT || 3000;
 server.listen(port, () => {
