@@ -20,6 +20,7 @@ const pool = new Pool({
 const app = express();
 const server = require('http').createServer(app);
 const wss = websocket(server);
+const wss = websocket.init(server);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

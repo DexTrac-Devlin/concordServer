@@ -1,0 +1,27 @@
+{
+  "name": "concordServer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DexTrac-Devlin/concordServer.git"
+  },
+  "author": "",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/DexTrac-Devlin/concordServer/issues"
+  },
+  "homepage": "https://github.com/DexTrac-Devlin/concordServer#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "pg": "^8.7.1",
+    "ws": "^8.2.3"
+  }
+}
