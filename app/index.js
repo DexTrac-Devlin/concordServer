@@ -24,6 +24,8 @@ const wss = websocket(server);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static('public'));
+
 app.use('/api/users', users(pool));
 app.use('/api/oracles', oracles(pool));
 app.use('/api/requests', requests(pool, wss));

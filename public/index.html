@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blockchain Explorer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-4">Blockchain Explorer</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="balance-address" class="block mb-2">Account Balance:</label>
+        <input id="balance-address" type="text" class="border border-gray-300 p-2 w-full" placeholder="Enter account address">
+        <button id="get-balance" class="bg-blue-500 text-white px-4 py-2 mt-2">Get Balance</button>
+        <div id="balance-result" class="mt-4"></div>
+      </div>
+
+      <div>
+        <label for="block-number" class="block mb-2">Block By Number:</label>
+        <input id="block-number" type="text" class="border border-gray-300 p-2 w-full" placeholder="Enter block number">
+        <button id="get-block" class="bg-blue-500 text-white px-4 py-2 mt-2">Get Block</button>
+        <div id="block-result" class="mt-4"></div>
+      </div>
+    </div>
+  </div>
+
+      <div>
+        <label for="logs-filter" class="block mb-2">Logs:</label>
+        <textarea id="logs-filter" class="border border-gray-300 p-2 w-full" rows="4" placeholder="Enter filter JSON"></textarea>
+        <button id="get-logs" class="bg-blue-500 text-white px-4 py-2 mt-2">Get Logs</button>
+      <div id="logs-result" class="mt-4"></div>
+      </div>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
