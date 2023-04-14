@@ -12,31 +12,28 @@ A mock Ethereum JSON-RPC and WebSocket server backed by a PostgreSQL database. T
 ```
 concordServer/
 │
-├─ app/
-│ ├─ api/
-│ │ ├─ oracles.js
-│ │ ├─ requests.js
-│ │ ├─ responses.js
-│ │ └─ users.js
-│ │
-│ ├─ database/
-│ │ └─ schema.sql
-│ │
-│ ├─ websocket/
-│ │ └─ websocket.js
-│ │
-│ └─ index.js
-│
-├─ public/
-│ ├─ app.js
-│ └─ index.html
-│
-├─ .dockerignore
-├─ .env.example
-├─ .gitignore
-├─ docker-compose.yml
-├─ Dockerfile
-└─ README.md
+├── app
+│   ├── api
+│   │   ├── getBalance.js
+│   │   ├── getBlockByNumber.js
+│   │   ├── getLogs.js
+│   │   ├── oracles.js
+│   │   ├── requests.js
+│   │   ├── responses.js
+│   │   └── users.js
+│   ├── database
+│   │   └── schema.sql
+│   ├── index.js
+│   └── websocket
+│       └── websocket.js
+├── docker-compose.yml
+├── Dockerfile
+├── LICENSE
+├── package.json
+├── public
+│   ├── app.js
+│   └── index.html
+└── README.md
 ```
 
 
