@@ -25,16 +25,29 @@
         <div id="block-result" class="mt-4"></div>
       </div>
     </div>
-  </div>
 
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
       <div>
         <label for="logs-filter" class="block mb-2">Logs:</label>
         <textarea id="logs-filter" class="border border-gray-300 p-2 w-full" rows="4" placeholder="Enter filter JSON"></textarea>
         <button id="get-logs" class="bg-blue-500 text-white px-4 py-2 mt-2">Get Logs</button>
-      <div id="logs-result" class="mt-4"></div>
+        <div id="logs-result" class="mt-4"></div>
       </div>
 
-
+      <div class="form-container">
+        <h2>Deploy Oracle Contract</h2>
+        <form id="deployOracleForm" onsubmit="event.preventDefault(); deployOracleContract();">
+          <label for="contractAddress">Contract Address:</label>
+          <input type="text" id="contractAddress" />
+          <label for="ownerAddress">Owner Address:</label>
+          <input type="text" id="ownerAddress" />
+          <label for="fulfillerAddress">Fulfiller Address:</label>
+          <input type="text" id="fulfillerAddress" />
+          <button type="submit">Deploy</button>
+        </form>
+      </div>
+    </div>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>

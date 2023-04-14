@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const users = require('./api/users');
 const oracles = require('./api/oracles');
 const requests = require('./api/requests');
+const contracts = require('./api/contracts');
 const responses = require('./api/responses');
 const getBalance = require('./api/getBalance');
 const getBlockByNumber = require('./api/getBlockByNumber');
@@ -19,8 +20,7 @@ const pool = new Pool({
 
 const app = express();
 const server = require('http').createServer(app);
-const wss = websocket(server);
-const wss = websocket.init(server);
+const wss = websocket(server); // Keep this line
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,6 +30,7 @@ app.use(express.static('public'));
 app.use('/api/users', users(pool));
 app.use('/api/oracles', oracles(pool));
 app.use('/api/requests', requests(pool, wss));
+app.use('/api/contracts', contracts(pool));
 app.use('/api/responses', responses(pool, wss));
 app.use('/api/balance', getBalance(pool));
 app.use('/api/block', getBlockByNumber(pool));

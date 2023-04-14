@@ -36,5 +36,13 @@ CREATE TABLE logs (
     topics TEXT[] NOT NULL
 );
 
+CREATE TABLE contracts (
+  id SERIAL PRIMARY KEY,
+  address VARCHAR(42) NOT NULL UNIQUE,
+  contract_type VARCHAR(255) NOT NULL,
+  owner VARCHAR(42) NOT NULL,
+  fulfillers VARCHAR(42)[] NOT NULL DEFAULT '{}'
+);
+
 CREATE INDEX idx_logs_block_number ON logs (block_number);
 CREATE INDEX idx_logs_address ON logs (address);

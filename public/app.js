@@ -22,6 +22,21 @@ document.getElementById('get-block').addEventListener('click', async () => {
   }
 });
 
+async function deployOracleContract() {
+  const contractAddress = document.getElementById('contractAddress').value;
+  const ownerAddress = document.getElementById('ownerAddress').value;
+  const fulfillerAddress = document.getElementById('fulfillerAddress').value;
+
+  const response = await fetch('/api/contracts/deploy', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contractAddress, ownerAddress, fulfillerAddress }),
+  });
+
+  const data = await response.json();
+  console.log(data);
+}
+
 document.getElementById('get-logs').addEventListener('click', async () => {
   const filterJson = document.getElementById('logs-filter').value;
   let filter;
